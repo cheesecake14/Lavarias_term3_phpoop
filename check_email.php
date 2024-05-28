@@ -2,11 +2,11 @@
 require_once('classes/database.php');
 
 if (isset($_POST['email'])) {
-    $username = $_POST['email'];
+    $email = $_POST['email']; 
     $con = new database();
 
-    $query = $con->opencon()->prepare("SELECT email FROM users WHERE email = ?");
-    $query->execute([$username]);
+    $query = $con->opencon()->prepare("SELECT user_email FROM users WHERE user_email = ?");
+    $query->execute([$email]);
     $existingUser = $query->fetch();
 
     if ($existingUser) {
@@ -14,4 +14,4 @@ if (isset($_POST['email'])) {
     } else {
         echo json_encode(['exists' => false]);
     }
-}
+} 
